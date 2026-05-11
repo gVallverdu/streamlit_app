@@ -13,8 +13,10 @@ Sliders: beta_1 and beta_2/beta_1
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+from pathlib import Path
 
-img = "assets/CuO2.png"
+IMG_PATH = Path(__file__).parent / "assets" / "CuO2.png"
+
 # ─────────────────────────────────────────────────────────────
 # Page config
 # ─────────────────────────────────────────────────────────────
@@ -26,7 +28,7 @@ st.set_page_config(
 
 col_txt, col_img = st.columns([2, 1])
 with col_img:
-    st.image(img, width="stretch")
+    st.image(str(IMG_PATH), width="stretch")
     # st.image(img, width=300)
 with col_txt:
     st.title("Band Diagram of Square Lattices")
