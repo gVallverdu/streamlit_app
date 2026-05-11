@@ -69,9 +69,9 @@ factor_beta = st.sidebar.slider(
 #     format="%.2f",
 # )
 
-st.sidebar.markdown("$\\alpha_2 = \\alpha_1$ (eV)")
+st.sidebar.markdown("$\\alpha_2 = \\alpha_1 + \delta$ (eV)")
 shift_alpha = st.sidebar.slider(
-    "On site energy, atom 2",
+    "Shift energy",
     min_value=0.0, max_value=1.0, value=0.0, step=0.05,
     format="%.2f",
 )
@@ -119,7 +119,11 @@ def band(k, alpha_1=-1.0, beta_1=-.5, alpha_2=None, beta_2=None, signe="+"):
 npts = 100
 valk = np.linspace(-.5, .5, npts, endpoint=False)
 
+plt.style.use("default")
 fig, ax = plt.subplots(figsize=(8, 5))
+ax.grid(True)
+# fig.patch.set_facecolor('#FFFFFF')
+# ax.set_facecolor('#FFFFFF')
 
 ax.plot(valk, band(valk, alpha_1=alpha_1, beta_1=beta_1, signe="+"), "C0-", label="Simple case")
 ax.plot(valk, band(valk, alpha_1=alpha_1, beta_1=beta_1, signe="-"), "C0-")
@@ -127,8 +131,11 @@ ax.plot(valk, band(valk, alpha_1=alpha_1, beta_1=beta_1, signe="-"), "C0-")
 ax.plot(valk, band(valk, alpha_1, beta_1, alpha_2, beta_2, signe="+"), "C1-", label="General case")
 ax.plot(valk, band(valk, alpha_1, beta_1, alpha_2, beta_2, signe="-"), "C1-")
 
-ax.axhline(beta_1 - beta_2, color="C3", linestyle="--", lw=1)
-ax.axhline(beta_2 - beta_1, color="C3", linestyle="--", lw=1)
+sm = np.sqrt(((alpha_1 + alpha_2) / 2)**2 + (beta_1 - beta_2)**2)
+emax_vb = (alpha_1 + alpha_2) / 2 - sm
+emin_cb = (alpha_1 + alpha_2) / 2 + sm
+ax.axhline(emax_vb, color="C3", linestyle="--", lw=1)
+ax.axhline(emin_cb, color="C3", linestyle="--", lw=1)
 
 if abs(beta_1 - beta_2) > 0.05:
     ax.annotate(
