@@ -260,20 +260,6 @@ st.markdown(
     """
     <div style="text-align: center; color: gray; font-size: 0.85em; padding: 10px;">
         <strong>Germain Salvato Vallverdu</strong> &nbsp;|&nbsp;
-        
-        <a href="https://github.com/gVallverdu" style="color: gray;">
-            gVallverdu
-        </a>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown("---")
-st.markdown(
-    """
-    <div style="text-align: center; color: gray; font-size: 0.85em; padding: 10px;">
-        <strong>Germain Salvato Vallverdu</strong> &nbsp;|&nbsp;
         <a href="https://www.univ-pau.fr" target="_blank" style="color: gray; text-decoration: none;">Université de Pau et des Pays de l'Adour</a> &nbsp;|&nbsp;
         <a href="https://github.com/gVallverdu" target="_blank" style="color: gray; text-decoration: none;">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 16 16">
